@@ -1,5 +1,5 @@
 %%
-%% This is file `examples/hitart/reports/hithesisart.cls',
+%% This is file `hithesisart.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisart}
-[2020/07/29 3.0.4 Harbin Institute of Technology Thesis Template]
+[2020/09/13 3.0.5 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -215,21 +215,12 @@
 \RequirePackage{xltxtra}
 
 
-\ifhit@shenzhen
 \renewcommand\normalsize{%
   \@setfontsize\normalsize{12bp}{20.50398bp}%
   \abovedisplayskip=8pt
   \abovedisplayshortskip=8pt
   \belowdisplayskip=\abovedisplayskip
   \belowdisplayshortskip=\abovedisplayshortskip}
-\else
-\renewcommand\normalsize{%
-  \@setfontsize\normalsize{12bp}{15bp}%
-  \abovedisplayskip=6pt
-  \abovedisplayshortskip=6pt
-  \belowdisplayskip=\abovedisplayskip
-  \belowdisplayshortskip=\abovedisplayshortskip}
-\fi
 
 \def\hit@def@fontsize#1#2{%
   \expandafter\newcommand\csname #1\endcsname[1][1.3]{%
@@ -479,4 +470,4 @@
 \AtEndOfClass{\sloppy}
 \endinput
 %%
-%% End of file `examples/hitart/reports/hithesisart.cls'.
+%% End of file `hithesisart.cls'.
