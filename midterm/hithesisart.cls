@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisart}
-[2020/09/13 3.0.5 Harbin Institute of Technology Thesis Template]
+[2020/09/28 3.0.9 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -158,7 +158,7 @@
 \ifhit@pifootnote
   \RequirePackage{pifont}
 \fi
-\RequirePackage{CJKfntef}
+\RequirePackage{xeCJKfntef}
 
 \RequirePackage{longtable}
 \RequirePackage{booktabs}
@@ -245,12 +245,13 @@
 \hit@def@fontsize{qihao}{5.5bp}
 \hit@def@fontsize{bahao}{5bp}
 
+
 \ctexset{%
   section={
     afterindent=true,
     beforeskip={7.5bp},%上下空0.5行
     afterskip={7.5bp},
-    format={\heiti\ifhit@harbin\sihao[1.25]\else\xiaosan[1.25]\fi},
+    format={\heiti\xiaosan[1.25]},
     aftername=\enspace,
     fixskip=true,
     break={},

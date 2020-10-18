@@ -1,5 +1,5 @@
 %%
-%% This is file `examples/hitbook/chinese/hithesisbook.cls',
+%% This is file `hithesisbook.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisbook}
-[2020/07/29 3.0.4 Harbin Institute of Technology Thesis Template]
+[2020/09/28 3.0.9 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -162,7 +162,7 @@
 \ifhit@pifootnote
   \RequirePackage{pifont}
 \fi
-\RequirePackage{CJKfntef}
+\RequirePackage{xeCJKfntef}
 
 \RequirePackage{longtable}
 \RequirePackage{booktabs}
@@ -1215,9 +1215,17 @@ foot=8.5true mm
   U.D.C:  \hit@intclassifiedindex }
   \vspace*{1em}
   \begin{center}
+    %    \end{macrocode}
   \parbox[t][1.6cm][t]{\textwidth}{\begin{center} \end{center} }
     \parbox[t][3.5cm][t]{\textwidth}{\xiaoer[1]
-  \begin{center}Dissertation for the {\hit@exueweier} Degree in \hit@exueke\end{center}
+      \begin{center}
+        \ifhit@shenzhen
+        \ifhit@master A dissertation submitted in partial fulfillment of\\ the requirements for the academic degree of\\ Master of Engineering
+        \else Dissertation for the {\hit@exueweier} Degree in \hit@exueke
+        \fi
+        \else Dissertation for the {\hit@exueweier} Degree in \hit@exueke
+        \fi
+      \end{center}
       \ifhit@fulltime\relax\else\begin{center}\hit@ebraceleft\hit@estudenttype\hit@ebraceright\end{center}\fi} %与中文保持一致，删除in {\hit@exueke}
     \parbox[t][7cm][t]{\textwidth}{%
    \begin{center}%
@@ -1577,4 +1585,4 @@ foot=8.5true mm
 \AtEndOfClass{\sloppy}
 \endinput
 %%
-%% End of file `examples/hitbook/chinese/hithesisbook.cls'.
+%% End of file `hithesisbook.cls'.
