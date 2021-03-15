@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2017-2020 by Chu Yanshuo <yanshuoc@gmail.com>
+%% Copyright (C) 2017-2021 by Chu Yanshuo <yanshuoc@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3a
@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisart}
-[2020/09/28 3.0.9 Harbin Institute of Technology Thesis Template]
+[2020/12/22 3.0.14 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{

@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2017-2020 by Chu Yanshuo <yanshuoc@gmail.com>
+%% Copyright (C) 2017-2021 by Chu Yanshuo <yanshuoc@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3a
@@ -113,7 +113,7 @@ FUNCTION {cap.th.en}  {"th"}
 FUNCTION {cap.space}      {" "}
 FUNCTION {cap.period}  {"\@. "}
 FUNCTION {cap.comma}  {"\@, "}
-FUNCTION {cap.colon}  {"\thinspace{}\textnormal{: }"}
+FUNCTION {cap.colon}  {"\textnormal{: }"}
 FUNCTION {cap.double.slash}  {" //\thinspace{}"}
 FUNCTION {cap.dash}  {"\textnormal{-}"}
 

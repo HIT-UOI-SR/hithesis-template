@@ -1,5 +1,5 @@
 %%
-%% This is file `hithesisbook.cls',
+%% This is file `examples/hitbook/chinese/hithesisbook.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2017-2020 by Chu Yanshuo <yanshuoc@gmail.com>
+%% Copyright (C) 2017-2021 by Chu Yanshuo <yanshuoc@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3a
@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisbook}
-[2020/09/28 3.0.9 Harbin Institute of Technology Thesis Template]
+[2020/12/22 3.0.14 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -66,10 +66,18 @@
 \fi
 \newif\ifhit@geometrynewone
 \newif\ifhit@geometrynewtwo
+\newif\ifhit@geometrynewno
 \define@key{hit}{newgeometry}{%
   \hit@geometrynewonefalse
   \hit@geometrynewtwofalse
+  \hit@geometrynewnofalse
   \expandafter\csname hit@geometrynew#1true\endcsname}
+\newif\ifhit@zijvregu
+\newif\ifhit@zijvword
+\define@key{hit}{zijv}{%
+  \hit@zijvregufalse
+  \hit@zijvwordfalse
+  \expandafter\csname hit@zijv#1true\endcsname}
 \DeclareBoolOption[false]{arialtoc}
 \DeclareBoolOption[false]{arialtitle}
 \DeclareBoolOption[true]{chapterbold}
@@ -92,6 +100,7 @@
 \DeclareBoolOption[true]{bsheadrule}
 \DeclareBoolOption[true]{newtxmath}
 \DeclareBoolOption[false]{splitbibitem}
+\DeclareBoolOption[false]{engtoc}
 \DeclareStringOption{fontset}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
@@ -130,6 +139,18 @@
       \fi
     \fi
   \fi
+\fi
+\ifhit@zijvregu\relax\else
+\ifhit@zijvword\relax\else
+\hit@zijvregutrue
+\fi
+\fi
+\ifhit@geometrynewone\relax\else
+\ifhit@geometrynewtwo\relax\else
+\ifhit@geometrynewno\relax\else
+\hit@geometrynewtwotrue
+\fi
+\fi
 \fi
 \RequirePackage{etoolbox}
 \RequirePackage{ifxetex}
@@ -272,6 +293,14 @@ foot=8.5true mm
   \@mainmatterfalse
   \pagenumbering{Roman}
   \pagestyle{hit@empty}
+\ifhit@openright\cleardoublepage\else\clearpage\fi
+\ifhit@zijvword
+\ziju{0.05416667}
+\else
+\ifhit@zijvregu
+\ziju{0.05580808}
+\fi
+\fi
 }
 \renewcommand\mainmatter{%
   \ifhit@english
@@ -295,7 +324,7 @@ foot=8.5true mm
   \ifhit@openright\cleardoublepage\else\clearpage\fi
   \@mainmattertrue}
 \renewcommand\normalsize{%
-  \@setfontsize\normalsize{12bp}{\ifhit@glue 20.50398bp \@plus 2.83465bp \@minus 0bp\else 20.50398bp\fi}%
+  \@setfontsize\normalsize{12bp}{\ifhit@glue 20.50394bp \@plus 2.834646bp \@minus 0bp\else 20.50394bp\fi}%
   \abovedisplayskip=8pt
   \abovedisplayshortskip=8pt
   \belowdisplayskip=\abovedisplayskip
@@ -362,7 +391,11 @@ foot=8.5true mm
           \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
         \fi
         \ifhit@shenzhen
-          \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@cdegree\hit@cthesisname}
+          \if@mainmatter
+            \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
+          \else
+            \fancyhead[C]{\xiaowu[0]\leftmark}
+          \fi
         \fi
         \ifhit@weihai
           \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@cdegree\hit@cthesisname}
@@ -613,8 +646,8 @@ foot=8.5true mm
     chapter={
       afterindent=true,
       pagestyle={hit@headings},
-      beforeskip={28.34658bp},%一个空行 1.57481 × 18
-      afterskip={24.74658bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
+      beforeskip={28.34646bp},%一个空行 1.57481 × 18
+      afterskip={28.74646bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
       aftername={\par},
       format={\hit@chapter@engformat},
       nameformat={\hit@chapter@engnameformat},%\center 会影响之后全局
@@ -625,8 +658,8 @@ foot=8.5true mm
     },
     section={
       afterindent=true,
-      beforeskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp \else 13.5bp \fi},%上下空0.5行
-      afterskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp  \else 13.5bp \fi},
+      beforeskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},%上下空0.5行
+      afterskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{15bp}{21bp \@plus 1.677267bp \@minus 1.157391bp}\else\fontsize{15bp}{21bp}\fi\selectfont\bfseries},
       aftername=\enspace,
       fixskip=true,
@@ -634,8 +667,8 @@ foot=8.5true mm
     },
     subsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 11bp \@plus 1.842609bp \@minus 0.9920497bp \else 11bp \fi},
-      afterskip={\ifhit@glue 11bp \@plus 2.33863bp \@minus 0.49602bp \else 11bp \fi},
+      beforeskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
+      afterskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{14bp}{18bp \@plus 1.842609bp \@minus 0.9920497bp}\else\fontsize{14bp}{18bp}\fi\selectfont\bfseries},
       aftername=\enspace,
       fixskip=true,
@@ -643,8 +676,8 @@ foot=8.5true mm
     },
     subsubsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
-      afterskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
+      beforeskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
+      afterskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
       format={\hit@title@font\normalsize},
       aftername=\enspace,
       fixskip=true,
@@ -659,8 +692,8 @@ foot=8.5true mm
     chapter={
       afterindent=true,
       pagestyle={hit@headings},
-      beforeskip={28.34658bp},%一个空行 1.57481 × 18
-      afterskip={24.74658bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
+      beforeskip={28.34646bp},%一个空行 1.57481 × 18
+      afterskip={28.74646bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
       aftername=\enspace,
       format={\hit@chapter@postdocformat},%\center 会影响之后全局
       nameformat=\relax,
@@ -671,8 +704,8 @@ foot=8.5true mm
     },
     section={
       afterindent=true,
-      beforeskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp \else 13.5bp \fi},%上下空0.5行
-      afterskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp  \else 13.5bp \fi},
+      beforeskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},%上下空0.5行
+      afterskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{15bp}{21bp \@plus 1.677267bp \@minus 1.157391bp}\else\fontsize{15bp}{21bp}\fi\selectfont\bfseries},
       aftername=\enspace,
       fixskip=true,
@@ -680,8 +713,8 @@ foot=8.5true mm
     },
     subsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 11bp \@plus 1.842609bp \@minus 0.9920497bp \else 11bp \fi},
-      afterskip={\ifhit@glue 11bp \@plus 2.33863bp \@minus 0.49602bp \else 11bp \fi},
+      beforeskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
+      afterskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{14bp}{18bp \@plus 1.842609bp \@minus 0.9920497bp}\else\fontsize{14bp}{18bp}\fi\selectfont\bfseries},
       aftername=\enspace,
       fixskip=true,
@@ -689,8 +722,8 @@ foot=8.5true mm
     },
     subsubsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
-      afterskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
+      beforeskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
+      afterskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
       format={\hit@title@font\normalsize},
       aftername=\enspace,
       fixskip=true,
@@ -705,8 +738,8 @@ foot=8.5true mm
     chapter={
       afterindent=true,
       pagestyle={hit@headings},
-      beforeskip={28.34658bp},%一个空行 1.57481 × 18
-      afterskip={24.74658bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
+      beforeskip={28.34646bp},%一个空行 1.57481 × 18
+      afterskip={28.74646bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
       aftername=\enspace,
       format={\centering\hit@title@font\xiaoer[1.57481]\ifhit@chapterbold\ifhit@bachelor\bfseries\fi\fi},%\center 会影响之后全局
       nameformat=\relax,
@@ -717,8 +750,8 @@ foot=8.5true mm
     },
     section={
       afterindent=true,
-      beforeskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp \else 13.5bp \fi},%上下空0.5行
-      afterskip={\ifhit@glue 13.5bp \@plus 1.677267bp \@minus 1.157391bp  \else 13.5bp \fi},
+      beforeskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},%上下空0.5行
+      afterskip={\ifhit@glue 19.84252bp \@plus 2.834646bp \@minus 0bp \else 19.84252bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{15bp}{21bp \@plus 1.677267bp \@minus 1.157391bp}\else\fontsize{15bp}{21bp}\fi\selectfont},
       aftername=\enspace,
       fixskip=true,
@@ -726,8 +759,8 @@ foot=8.5true mm
     },
     subsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 11bp \@plus 1.842609bp \@minus 0.9920497bp \else 11bp \fi},
-      afterskip={\ifhit@glue 11bp \@plus 2.33863bp \@minus 0.49602bp \else 11bp \fi},
+      beforeskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
+      afterskip={\ifhit@glue 17.00787bp \@plus 2.834646bp \@minus 0bp \else 17.00787bp \fi},
       format={\hit@title@font\ifhit@glue\fontsize{14bp}{18bp \@plus 1.842609bp \@minus 0.9920497bp}\else\fontsize{14bp}{18bp}\fi\selectfont},
       aftername=\enspace,
       fixskip=true,
@@ -735,8 +768,8 @@ foot=8.5true mm
     },
     subsubsection={
       afterindent=true,
-      beforeskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
-      afterskip={\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp \else 9bp \fi},
+      beforeskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
+      afterskip={\ifhit@glue 8.503937bp \@plus 2.834646bp \@minus 0bp \else 8.503937bp \fi},
       format={\hit@title@font\normalsize},
       aftername=\enspace,
       fixskip=true,
@@ -898,6 +931,8 @@ foot=8.5true mm
 \hit@def@term{cdate}
 \hit@def@term{cnumber}
 \hit@def@term{cpositionname}
+\hit@def@term{cfinishdate}
+\hit@def@term{csubmitdate}
 \hit@def@term{cstartdate}
 \hit@def@term{cenddate}
 
@@ -946,16 +981,11 @@ foot=8.5true mm
   \ifhit@postdoc\hit@second@titlepage@postdoc\else\ifhit@bachelor\hit@second@titlepage@bachelor\else\hit@second@titlepage@other\fi\fi}
 
 \newcommand{\hit@first@titlepage@postdoc}{
-  {\songti\sihao\renewcommand{\arraystretch}{2}
-    \hspace{1cm}\begin{tabular}{@{}r@{}l@{}}
-      \hit@postdoc@classifiedindex&\underline{\makebox[6\ccwd]{\hit@natclassifiedindex}}\\
-      \hit@postdoc@UDC&\underline{\makebox[6\ccwd]{\hit@intclassifiedindex}}\\
-    \end{tabular}}\hfill
-  {\songti\sihao\renewcommand{\arraystretch}{2}
-    \begin{tabular}{@{}r@{}l@{}}
-      \hit@postdoc@secretlevel&\underline{\makebox[6\ccwd]{\hit@statesecrets}}\\
-      \hit@postdoc@number&\underline{\makebox[6\ccwd]{\hit@cnumber}}\\
-    \end{tabular}\hspace{1cm}\renewcommand{\arraystretch}{1}}
+  {\songti\sihao\renewcommand{\arraystretch}{2}\
+    \begin{tabular}{@{}r@{}l@{\hspace{7\ccwd}}r@{}l@{\hspace{3em}}r}
+      \hit@postdoc@classifiedindex&\underline{\makebox[6\ccwd]{\hit@natclassifiedindex}}&\hit@postdoc@secretlevel&\underline{\makebox[6\ccwd]{\hit@statesecrets}}&\\
+      \hit@postdoc@UDC&\underline{\makebox[6\ccwd]{\hit@intclassifiedindex}}&\hit@postdoc@number&\underline{\makebox[6\ccwd]{\hit@cnumber}}&\\
+    \end{tabular}\renewcommand{\arraystretch}{1}}
   \parbox[t][5cm][b]{\textwidth}{\begin{center}\heiti\xiaoer[2]\hit@cschoolname\par
       \hit@postdoc@documenttitle\end{center}}
   \parbox[b][4cm][b]{\textwidth}{
@@ -975,8 +1005,8 @@ foot=8.5true mm
     \songti\sihao[2]\renewcommand{\arraystretch}{1.5}
     \begin{center}
       \begin{tabular}{rl}
-        \hit@postdoc@finishdate & \underline{\makebox[6cm]{}}\\
-        \hit@postdoc@submitdate & \underline{\makebox[6cm]{}}\\
+        \hit@postdoc@finishdate & \underline{\makebox[6cm]{\hit@cfinishdate}}\\
+        \hit@postdoc@submitdate & \underline{\makebox[6cm]{\hit@csubmitdate\hfill}}\\
       \end{tabular}\renewcommand{\arraystretch}{1}
     \end{center}
     }
@@ -1351,6 +1381,10 @@ foot=8.5true mm
 \normalsize\@starttoc{toc}
 \ifhit@doctor
 \tableofengcontents
+\else
+\ifhit@engtoc
+\tableofengcontents
+\fi
 \fi
 \ifhit@english
 \printnoidxglossary[sort=word,style=engstyle,title={Nomenclature},nopostdot,nonumberlist]
@@ -1585,4 +1619,4 @@ foot=8.5true mm
 \AtEndOfClass{\sloppy}
 \endinput
 %%
-%% End of file `hithesisbook.cls'.
+%% End of file `examples/hitbook/chinese/hithesisbook.cls'.
