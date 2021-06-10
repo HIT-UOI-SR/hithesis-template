@@ -1,5 +1,5 @@
 %%
-%% This is file `examples/hitbook/chinese/hithesisbook.cls',
+%% This is file `hithesisbook.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisbook}
-[2020/12/22 3.0.14 Harbin Institute of Technology Thesis Template]
+[2021/05/06 3.0.15 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
@@ -187,7 +187,6 @@
 
 \RequirePackage{longtable}
 \RequirePackage{booktabs}
-\RequirePackage[sort&compress]{natbib}
 \RequirePackage{hyperref}
 \hypersetup{%
   CJKbookmarks=true,
@@ -200,6 +199,7 @@
   plainpages=false,
   pdfborder=0 0 0}
 \urlstyle{same}
+\RequirePackage[sort&compress]{gbt7714}
 \ifhit@debug\RequirePackage[showframe]{geometry}\else\RequirePackage{geometry}\fi
 \geometry{%根据PlutoThesis 原版定义而来
   a4paper, % 210 * 297mm
@@ -564,7 +564,7 @@ foot=8.5true mm
 \newcommand{\ltfontsize}[1]{\def\LT@array{#1\hit@LT@array}}
 \renewcommand{\thesubtable}{(\alph{subtable})}
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}%使图编号为 7-1 的格式 %\protect{~}
-\renewcommand{\thesubfigure}{\alph{subfigure})}%使子图编号为 a)的格式
+\renewcommand{\thesubfigure}{(\alph{subfigure})}%使子图编号为 a)的格式
 \renewcommand{\p@subfigure}{\thefigure~} %使子图引用为 7-1 a) 的格式，母图编号和子图编号之间用~加一个空格
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}%使表编号为 7-1 的格式
 \setitemize{leftmargin=0em,itemsep=0em,partopsep=0em,parsep=0em,topsep=0em,itemindent=3em}
@@ -1177,9 +1177,7 @@ foot=8.5true mm
  \vspace*{1.2cm}
 \begin{center}
   \begin{center}\xiaoyi[1]\songti\textbf{\hit@cxuewei\hit@cthesisname}\end{center}
-    \ifhit@fulltime\vspace{1.4cm}\else%
-      \begin{center}\xiaoyi[1]\songti\textbf{\hit@cbraceleft\hit@cstudenttype\hit@cbraceright}\end{center}
-    \fi%
+      \begin{center}\xiaoer[1]\songti\textbf{\hit@cbraceleft\hit@cstudenttype\hit@cbraceright}\end{center}
     \parbox[t][7.8cm][t]{\textwidth}{%
   \begin{center}\erhao\heiti\hit@ctitlecover\end{center}
 \ifhit@subtitle\begin{center}\hspace{-4em}\xiaoer\heiti\pozhehao\hit@csubtitle\end{center}\fi
@@ -1211,8 +1209,7 @@ foot=8.5true mm
     \end{tabular}}
   \parbox[t][3.2cm][t]{\textwidth}{\begin{center} \end{center} }
     \parbox[t][2.4cm][t]{\textwidth}{\xiaoer[1]
-  \begin{center}\songti\bfseries\hit@cdegree\hit@cthesisname\end{center}
-      \ifhit@fulltime\relax\else\begin{center}\songti\textbf{\hit@cbraceleft\hit@cstudenttype\hit@cbraceright}\end{center}\fi}
+  \begin{center}\songti\bfseries\hit@cdegree\hit@cthesisname\end{center}}
 \parbox[t][5cm][t]{\textwidth}{\erhao
   \begin{center}\heiti\hit@ctitlecover\end{center}
 \ifhit@subtitle\begin{center}\hspace{-4em}\xiaoer\heiti\pozhehao\hit@csubtitle\end{center}\fi}
@@ -1553,8 +1550,6 @@ foot=8.5true mm
 }
 
 \newcommand\bibstyle@numerical{\bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
-\newcommand\bibstyle@authoryear{\bibpunct{(}{)}{;}{a}{,}{,}}
-\newcommand\bibstyle@inline{\bibpunct{[}{]}{,}{n}{,}{\hit@inline@sep}}
 \citestyle{numerical}
 \DeclareRobustCommand\inlinecite{\@inlinecite}
 \def\@inlinecite#1{\begingroup\citestyle{inline}\let\@cite\NAT@citenum\citep{#1}\endgroup}
@@ -1619,4 +1614,4 @@ foot=8.5true mm
 \AtEndOfClass{\sloppy}
 \endinput
 %%
-%% End of file `examples/hitbook/chinese/hithesisbook.cls'.
+%% End of file `hithesisbook.cls'.

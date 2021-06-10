@@ -1,5 +1,5 @@
 %%
-%% This is file `examples/hitbook/chinese/hithesis.bst',
+%% This is file `hithesis.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:

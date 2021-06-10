@@ -1,5 +1,5 @@
 %%
-%% This is file `examples/hitbook/chinese/hithesis.ist',
+%% This is file `hithesis.ist',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -29,4 +29,4 @@ delim_0 "\\hspace*{\\fill}"
 delim_1 "\\hspace*{\\fill}"
 \endinput
 %%
-%% End of file `examples/hitbook/chinese/hithesis.ist'.
+%% End of file `hithesis.ist'.

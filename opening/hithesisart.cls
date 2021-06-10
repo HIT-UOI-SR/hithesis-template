@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisart}
-[2020/12/22 3.0.14 Harbin Institute of Technology Thesis Template]
+[2021/05/06 3.0.15 Harbin Institute of Technology Thesis Template]
 \RequirePackage{ifthen}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
